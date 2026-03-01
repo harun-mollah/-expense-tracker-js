@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Harun's Security Shield</title>
+    <style>
+        body { background: #1a1a1a; color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .box { background: #222; padding: 30px; border-radius: 15px; border: 2px solid #444; width: 300px; }
+        input { width: 100%; padding: 10px; margin-top: 10px; border-radius: 5px; border: none; outline: none; }
+        .indicator { height: 10px; width: 0%; border-radius: 5px; margin-top: 10px; transition: 0.5s; }
+        #msg { margin-top: 10px; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h3>Password Strength</h3>
+    <input type="password" id="pass" placeholder="Enter Password..." oninput="checkStrength()">
+    <div id="bar" class="indicator"></div>
+    <p id="msg">Type something...</p>
+</div>
+
+<script>
+    function checkStrength() {
+        let p = document.getElementById("pass").value;
+        let b = document.getElementById("bar");
+        let m = document.getElementById("msg");
+
+        if(p.length == 0) { b.style.width = "0%"; m.innerText = "Empty"; }
+        else if(p.length < 6) { b.style.width = "30%"; b.style.background = "red"; m.innerText = "Too Weak! ❌"; }
+        else if(p.match(/[a-z]/) && p.match(/[A-Z]/) && p.match(/[0-9]/)) { 
+            b.style.width = "100%"; b.style.background = "green"; m.innerText = "Super Strong! 💪"; 
+        }
+        else { b.style.width = "60%"; b.style.background = "yellow"; m.innerText = "Medium ⚠️"; }
+    }
+</script>
+</body>
+</html>
